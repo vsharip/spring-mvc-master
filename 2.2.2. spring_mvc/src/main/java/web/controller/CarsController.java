@@ -1,7 +1,7 @@
 package web.controller;
 
 import Model.Car;
-
+import Service.CarRepositoryImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,10 +9,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 public class CarsController {
+
+    CarRepositoryImpl carRepository = new CarRepositoryImpl();
 
     List<Car> cars = new ArrayList<>();
 
@@ -27,16 +28,11 @@ public class CarsController {
 
     @GetMapping(value = "/cars")
     public String printCountCars(@RequestParam(value = "count", required = false) Integer count, Model model) {
-        if (count == null || count >= 5) {
-            model.addAttribute("cars", cars);
-        } else {
-            List<Car> carList = cars.stream()
-                    .limit(count)
-                    .collect(Collectors.toList());
-            model.addAttribute("cars", carList);
-
-            return "cars";
+        if(count==null){
+            count=cars.size();
         }
+        List<Car> newCarList = carRepository.getCarsCount(cars, count);
+        model.addAttribute("cars", newCarList);
         return "cars";
     }
 }

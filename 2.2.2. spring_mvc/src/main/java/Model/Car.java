@@ -1,5 +1,7 @@
 package Model;
 
+import org.springframework.stereotype.Repository;
+
 public class Car {
     private String model;
     private int yearProduction;
