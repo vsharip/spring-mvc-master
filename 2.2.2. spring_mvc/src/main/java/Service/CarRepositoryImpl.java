@@ -9,7 +9,7 @@ public class CarRepositoryImpl implements CarRepository {
 
     @Override
     public List<Car> getCarsCount(List<Car> carList, Integer count) {
-        if (count >= carList.size()) {
+        if (count == null) {
             return carList;
         } else {
             return carList.stream()

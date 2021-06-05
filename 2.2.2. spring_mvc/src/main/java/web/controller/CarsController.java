@@ -28,9 +28,6 @@ public class CarsController {
 
     @GetMapping(value = "/cars")
     public String printCountCars(@RequestParam(value = "count", required = false) Integer count, Model model) {
-        if(count==null){
-            count=cars.size();
-        }
         List<Car> newCarList = carRepository.getCarsCount(cars, count);
         model.addAttribute("cars", newCarList);
         return "cars";
