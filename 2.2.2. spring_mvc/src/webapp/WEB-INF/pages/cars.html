@@ -13,13 +13,13 @@
 
 <table border="1">
     <tr>
-    <th>Model</th>
+    <th>model</th>
     <th>Year Production</th>
     <th>Series</th>
     </tr>
 
     <tr th:each="car, state : ${cars}">
-        <td th:utext="${car.model}">Model</td>
+        <td th:utext="${car.model}">model</td>
         <td th:utext="${car.yearProduction}">Year Production</td>
         <td th:utext="${car.series}">Series</td>
     </tr>
